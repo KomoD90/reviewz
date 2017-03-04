@@ -1,0 +1,128 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object img-thumbnail" ng-src={{resto.image}} alt="Uthappizza">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h3 class="media-heading">{{resto.name}}
+                        <small>{{resto.tagline}}</small></h3>
+                    <p>{{resto.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <label>Location:</label>
+            <div id="google_map" ng-click="setLoc(loc)" ng-value="loc"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+
+            <uib-tabset active="active">
+                <!--<uib-tab index="$index" ng-repeat="tab in tabs" heading="{{tab.title}}" disable="tab.disabled">
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="item in tab.content | filter:searchText">
+                            <div class="media-left media-middle">
+                                <img class="media-object img-thumbnail" ng-src={{resto.image}} alt="Peter Pan">
+                            </div>
+                            <div class="media-body">
+                                <h3 class="media-heading">{{resto.name}}
+                                    <small>{{resto.tagline}}</small></h3>
+                                <p>{{resto.description}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </uib-tab>-->
+                <uib-tab index="0" heading="Reviews">
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="rev in resto.reviews | filter:searchText">
+                            <div ui-sref="app.review({id: rev._id})">
+                                <div class="media-left media-middle">
+
+                                    <img class="media-object img-thumbnail" ng-src={{rev.images[0]}} alt="review img">
+
+                                </div>
+
+                                <div class="media-body">
+                                    <a>
+                                    <h4 class="media-heading">{{rev.title}}
+                                        <small>{{rev.postedBy}}</small></h4></a>
+                                    <p>{{rev.review | shortenReview}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </uib-tab>
+                <uib-tab index="1" heading="Menu">
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="item in resto.menu | filter:searchText">
+                            <div class="media-left media-middle">
+                                <img class="media-object img-thumbnail" ng-src={{item.image}} alt="Peter Pan">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{item.name}}
+                                    <small> {{item.price | currency}}</small></h4>
+                                <p>{{item.description}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </uib-tab>
+                <uib-tab index="2" heading="Offers">
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="offer in resto.offers | filter:searchText">
+                            <div class="media-left media-middle">
+                                <img class="media-object img-thumbnail" ng-src={{offer.image}} alt="Peter Pan">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{offer.title}}
+                                    <small>{{offer.duration}}</small></h4>
+                                <p>{{offer.description}}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </uib-tab>
+
+            </uib-tabset>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+    var map;
+    var loc = {};
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('google_map'), {
+            center: {
+                lat: loc.lat,
+                lng: loc.lng
+            },
+            zoom: 8
+        });
+
+
+        var marker = new google.maps.Marker({
+            position: {
+                lat: loc.lat,
+                lng: loc.lng
+            },
+            map: map
+        });
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfODU_qxGlZlDHL0jcqGbVWUOhWl_RKp8&callback=initMap" async defer></script>

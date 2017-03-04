@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-1">
+            <button id="RestoAddButton" type="button" class="btn btn-primary btn-circle" ui-sref="app.restaurantNew"><i class="glyphicon glyphicon-plus"></i></button>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6  col-sm-offset-5">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+                    <span id="restoSearchSpan" class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="media-list">
+                <li class="media" ng-repeat="resto in restaurants | filter:searchText">
+                    <div class="media-left media-middle">
+                        <a ui-sref="app.restaurantDetails({id: resto._id})">
+                            <img class="media-object img-thumbnail" ng-src={{resto.image}} alt="Peter Pan"
+                                 >
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">{{resto.name}}
+                            <small>{{resto.tagline}}</small></h3>
+                        <p>{{resto.description}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

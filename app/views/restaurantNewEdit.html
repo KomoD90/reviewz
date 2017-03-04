@@ -1,0 +1,91 @@
+<div class="container">
+	<div class="row">
+		<form name="restoForm" ng-submit="submitForm(picFile)" novalidate>
+
+			<div class="col-sm-6">
+				<!-- Name -->
+				<div class="form-group" ng-class="{ 'has-error' : restoForm.name.$invalid && !restoForm.name.$pristine }">
+					<label>Name:</label>
+					<input type="text" name="name" class="form-control" ng-model="resto.name" required>
+					<p ng-show="restoForm.name.$invalid && !restoForm.name.$pristine" class="help-block">You name is required.</p>
+				</div>
+
+				<!-- Tagline -->
+				<div class="form-group" ng-class="{ 'has-error' : restoForm.tagline.$invalid && !restoForm.tagline.$pristine }">
+					<label>Tagline:</label>
+					<input type="text" name="tagline" class="form-control" ng-model="resto.tagline">
+				</div>
+
+				<!-- Description -->
+				<div class="form-group" ng-class="{ 'has-error' : restoForm.description.$invalid && !restoForm.description.$pristine }">
+					<label>Description:</label>
+					<textarea rows="3" cols="50" name="description" form="restoForm" class="form-control" ng-model="resto.description" required>Enter description here...</textarea>
+					<p ng-show="restoForm.description.$invalid && !restoForm.description.$pristine" class="help-block">Description is required.</p>
+				</div>
+
+				<!-- Image -->
+				<div class="form-group" ng-class="{ 'has-error' : restoForm.file.$invalid && !restoForm.file.$pristine }">
+					<label>Image/Logo:</label>
+					<input type="file" ngf-select ng-model="picFile" name="file" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile">
+					<i ng-show="restoForm.file.$error.required">*required</i><br>
+					<i ng-show="restoForm.file.$error.maxSize">File too large 
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+					<img ng-show="restoForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <span class="glyphicon glyphicon-remove" ng-click="picFile = null" ng-show="picFile"></span>
+					<br>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" ng-disabled="restoForm.$invalid">Add Resaurant</button>
+				</div>
+
+				<input type="hidden" id="latLng" ng-model="resto.loc" ng-value="loc" />
+
+			</div>
+			<div class="col-sm-6">
+				<!-- Location -->
+
+				<label>Location:</label>
+				<div id="google_map" ng-click="setLoc(loc)" ng-value="loc"></div>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+
+
+<script>
+    var map;
+    var loc = {};
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('google_map'), {
+            center: {
+                lat: 29.2417,
+                lng: 47.6618
+            },
+            zoom: 8
+        });
+        map.addListener('click', function(e) {
+            console.log(e.latLng.lat(), e.latLng.lng());
+            placeMarkerAndPanTo(e.latLng, map, marker);
+        });
+
+        var marker = new google.maps.Marker({
+            position: {
+                lat: 29.2417,
+                lng: 47.6618
+            },
+            map: map
+        });
+    }
+    
+    function placeMarkerAndPanTo(latLng, map, marker) {
+        marker.setPosition(latLng);
+        map.panTo(latLng); 
+        loc = {lat:latLng.lat(), lng:latLng.lng()};
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfODU_qxGlZlDHL0jcqGbVWUOhWl_RKp8&callback=initMap" async
+	defer></script>

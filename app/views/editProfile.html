@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <form name="restoForm" ng-submit="submitForm()" novalidate>
+
+
+                <!-- Name -->
+                <div class="form-group" ng-class="{ 'has-error' : restoForm.name.$invalid && !restoForm.name.$pristine }">
+                    <label>Name:</label>
+                    <input type="text" name="name" class="form-control" ng-model="user.name" required>
+                    <p ng-show="restoForm.name.$invalid && !restoForm.name.$pristine" class="help-block">You name is required.</p>
+                </div>
+
+                <!-- Tagline -->
+                <div class="form-group" ng-class="{ 'has-error' : restoForm.bio.$invalid && !restoForm.bio.$pristine }">
+                    <label>Bio:</label>
+                    <input type="text" name="bio" class="form-control" ng-model="user.bio">
+                </div>
+
+                <!-- Description -->
+                <!-- <div class="form-group" ng-class="{ 'has-error' : restoForm.description.$invalid && !restoForm.description.$pristine }">
+                    <label>Description:</label>
+                    <textarea rows="3" cols="50" name="description" form="restoForm" class="form-control" ng-model="resto.description" required>Enter description here...</textarea>
+                    <p ng-show="restoForm.description.$invalid && !restoForm.description.$pristine" class="help-block">Description is required.</p>
+                </div> -->
+
+                <!-- Image -->
+                <div class="form-group" ng-class="{ 'has-error' : restoForm.image.$invalid && !restoForm.image.$pristine }">
+                    <label>Image:</label>
+                    <label class="btn btn-default btn-file">
+                        Browse <input type="file" class="hidden" ngf-select ng-model="picFile" name="file"    
+             accept="image/*" ngf-max-size="2MB" 
+             ngf-model-invalid="errorFile">
+                    </label>
+                    <p ng-show="restoForm.image.$invalid && !restoForm.image.$pristine" class="help-block">You Image is required.</p>
+                </div>
+                
+                <div class="form-group" ng-class="{ 'has-error' : restoForm.image.$invalid && !restoForm.image.$pristine }">
+                    <label>Cover:</label>
+                    <label class="btn btn-default btn-file">
+                        Browse <input type="file" class="hidden" ngf-select ng-model="picFile" name="file"    
+             accept="image/*" ngf-max-size="2MB" 
+             ngf-model-invalid="errorFile">
+                    </label>
+                    <p ng-show="restoForm.image.$invalid && !restoForm.image.$pristine" class="help-block">You Cover is required.</p>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-disabled="restoForm.$invalid">Submit changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

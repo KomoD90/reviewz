@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>{{review.title}}</h2>
+                    <p>{{review.review}}</p>
+                </div>
+                <div class="col-xs-12">
+                    <div style="height: 305px">
+                        <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides" no-ctransition="trans" style="background-color:black; height: 300px;">
+                            <div uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                                <img ng-src="{{slide.image}}" style="margin:auto;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card hovercard">
+                <div class="cardheader" >
+                    
+                </div>
+                <div class="avatar">
+                    <img alt="" src="{{user.image}}">
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="http://scripteden.com/">{{user.name}}</a>
+                    </div>
+                    <div class="desc">{{user.bio}}</div>
+                    <div class="desc">Curious developer</div>
+                    <div class="desc">Tech geek</div>
+                </div>
+               
+                <div class="bottom">
+
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>{{user.rep}}
+                     <!--<a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-danger btn-sm" rel="publisher" href="https://plus.google.com/+ahmshahnuralam">
+                        <i class="fa fa-google-plus"></i>
+                    </a>
+                    <a class="btn btn-primary btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-facebook"></i>
+                    </a>
+                    <a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+                        <i class="fa fa-behance"></i>
+                    </a>-->
+                 
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

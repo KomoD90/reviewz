@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="card hovercard">
+                <div class="cardheader">
+
+                </div>
+                <div class="avatar">
+                    <img alt="" src="{{user.image }}">
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <a target="_blank" href="http://scripteden.com/">{{user.name}}</a>
+                    </div>
+                    <div class="desc">{{user.bio}}</div>
+                    <div class="desc">Curious developer</div>
+                    <div class="desc">Tech geek</div>
+                </div>
+
+                <div class="bottom">
+
+                    <span class="glyphicon glyphicon-flash" aria-hidden="true"></span>{{user.rep}}
+                    <a ng-if="true" ui-sref="app.userProfile.edit({id: user._id})"><span class="fa fa-cog fa-fw" aria-hidden="true"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <uib-tabset active="active">
+                <uib-tab index="0" heading="Reviews">
+                    <ul class="media-list">
+                        <li class="media" ng-repeat="rev in reviews | filter:searchText">
+                            <div ui-sref="app.review({id: rev._id})">
+                                <div class="media-left media-middle">
+
+                                    <img class="media-object img-thumbnail" ng-src={{rev.images[0]}} alt="review img">
+
+                                </div>
+
+                                <div class="media-body">
+                                    <a>
+                                        <h4 class="media-heading">{{rev.title}}
+                                            <small>{{rev.postedBy}}</small></h4>
+                                    </a>
+                                    <p>{{rev.review | shortenReview}}</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </uib-tab>
+                <uib-tab index="1" heading="Achievments">
+                    <!--<ul class="media-list">
+                    <li class="media" ng-repeat="item in resto.menu | filter:searchText">
+                        <div class="media-left media-middle">
+                            <img class="media-object img-thumbnail" ng-src={{item.image}} alt="Peter Pan">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{item.name}}
+                                <small> {{item.price | currency}}</small></h4>
+                            <p>{{item.description}}</p>
+                        </div>
+                    </li>
+                </ul>-->
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-6  col-sm-offset-5">
+            <div id="imaginary_container">
+                <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="searchText">
+                    <span id="restoSearchSpan" class="input-group-addon">
+                        <button type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="media-list">
+                <li class="media" ng-repeat="user in users | filter:searchText">
+                    <div class="media-left media-middle">
+                        <a ui-sref="app.userProfile({id: user._id})">
+                            <img class="media-object img-thumbnail" ng-src={{user.image}} alt="Peter Pan">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">{{user.name}}
+                            <small><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>{{user.rep}}</small></h3>
+                        <p>{{user.bio}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
